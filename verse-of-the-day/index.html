@@ -1,0 +1,28 @@
+---
+layout: content-manager
+title: "Verse of the Day"
+permalink: /verse-of-the-day/
+---
+{%- assign items = site.verse_of_the_day | sort: "date" | reverse %}
+<div class="cm-page">
+  <header class="cm-header"><h1>{{ page.title }}</h1></header>
+  {%- assign latest = items | first %}
+  {%- if latest %}
+  <a class="cm-verse" href="{{ latest.url | relative_url }}">
+    <blockquote>{{ latest.verse | escape | newline_to_br }}</blockquote>
+    <figcaption>{{ latest.title }}{% if latest.translation %} &middot; {{ latest.translation }}{% endif %}</figcaption>
+    <p class="cm-meta">{{ latest.date | date: "%B %-d, %Y" }}</p>
+  </a>
+  {%- else %}
+  <p class="cm-empty">The first verse is on its way.</p>
+  {%- endif %}
+  <div class="cm-list">
+    {%- for item in items offset: 1 %}
+    <a class="cm-card" href="{{ item.url | relative_url }}">
+      <p class="cm-meta">{{ item.date | date: "%B %-d, %Y" }}</p>
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.verse | escape | truncatewords: 24 }}</p>
+    </a>
+    {%- endfor %}
+  </div>
+</div>

@@ -1,0 +1,35 @@
+# The sections of this site and the fields on each form. Content Manager reads
+# this, and so does Pages CMS. Change it here and the forms follow.
+media:
+  input: images/uploads
+  output: /images/uploads
+
+content:
+  - name: verse_of_the_day
+    label: Verse of the Day
+    type: collection
+    path: _verse_of_the_day
+    filename: "{year}-{month}-{day}-{primary}.md"
+    fields:
+    - name: title
+      label: Reference
+      type: string
+      required: true
+      description: Where it's from, like John 3:16.
+    - name: date
+      label: Date
+      type: date
+      required: true
+    - name: verse
+      label: Verse
+      type: text
+      required: true
+    - name: translation
+      label: Translation
+      type: string
+      description: Optional, like NIV or KJV.
+    - name: body
+      label: Reflection
+      type: rich-text
+      description: Optional thoughts on today's verse.
+

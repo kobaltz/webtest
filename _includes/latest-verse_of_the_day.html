@@ -1,0 +1,7 @@
+{%- assign item = site.verse_of_the_day | sort: "date" | last %}
+{%- if item %}
+<a class="cm-verse" href="{{ item.url | relative_url }}">
+  <blockquote>{{ item.verse | escape | newline_to_br }}</blockquote>
+  <figcaption>{{ item.title }}{% if item.translation %} &middot; {{ item.translation }}{% endif %}</figcaption>
+</a>
+{%- endif %}

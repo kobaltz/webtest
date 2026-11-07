@@ -1,0 +1,14 @@
+---
+layout: content-manager
+---
+<article class="cm-page">
+  <p class="cm-back"><a href="{{ '/verse-of-the-day/' | relative_url }}">&larr; All verses</a></p>
+  <figure class="cm-verse">
+    <blockquote>{{ page.verse | escape | newline_to_br }}</blockquote>
+    <figcaption>{{ page.title }}{% if page.translation %} &middot; {{ page.translation }}{% endif %}</figcaption>
+  </figure>
+  <p class="cm-meta">{{ page.date | date: "%B %-d, %Y" }}</p>
+  <div class="cm-content">
+    {{ content }}
+  </div>
+</article>

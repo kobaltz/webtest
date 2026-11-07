@@ -1,0 +1,15 @@
+# Site settings for Jekyll, which GitHub Pages runs on every push.
+title: "Still Waters"
+
+collections:
+  verse_of_the_day:
+    output: true
+    permalink: /verse-of-the-day/:title/
+
+defaults:
+  - scope:
+      type: verse_of_the_day
+    values:
+      layout: verse_of_the_day
+
+future: true
