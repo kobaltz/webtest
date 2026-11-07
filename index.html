@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Still Waters — A Quiet Place to Pray</title>
+  <meta name="description" content="A quiet place to pray: a prayer for today, prayers for every hour, treasured prayers of the faith, and a prayer wall to carry one another's burdens.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23b08d57' d='M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z'/%3E%3Crect x='10' y='15' width='4' height='7' rx='1' fill='%231c2230'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-serif: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
+      --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      --color-ivory: #fbf8f3;
+      --color-parchment: #f3ece1;
+      --color-ink: #1c2230;
+      --color-ink-light: #2b3349;
+
+      --color-gold-200: #ebdcc0;
+      --color-gold-300: #dcc79e;
+      --color-gold-400: #c9a96e;
+      --color-gold-500: #b08d57;
+      --color-gold-600: #8f6f3e;
+
+      --animate-ripple: ripple 9s ease-in-out infinite;
+      @keyframes ripple {
+        0%, 100% { opacity: .55; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.03); }
+      }
+    }
+  </style>
+
+  <style>
+    .js [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity 1s ease, transform 1s ease; }
+    .js [data-reveal].is-visible { opacity: 1; transform: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+      .animate-ripple { animation: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-ivory font-sans text-ink antialiased selection:bg-gold-300/50">
+
+  <!-- ───────────── Header ───────────── -->
+  <header data-header class="group/header fixed inset-x-0 top-0 z-50 transition-all duration-500 data-scrolled:bg-ivory/85 data-scrolled:shadow-[0_1px_0_rgba(28,34,48,0.06)] data-scrolled:backdrop-blur-md">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 transition-all duration-500 group-data-scrolled/header:py-4">
+      <a href="#top" class="flex items-center gap-2.5">
+        <svg viewBox="0 0 24 24" class="size-6" aria-hidden="true">
+          <path fill="currentColor" class="text-gold-500" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"/>
+          <rect x="10" y="15" width="4" height="7" rx="1" class="fill-ink"/>
+        </svg>
+        <span class="font-serif text-2xl font-medium tracking-wide">Still Waters</span>
+      </a>
+
+      <div class="hidden items-center gap-10 text-[12px] font-medium uppercase tracking-[0.2em] text-ink/65 md:flex">
+        <a href="#today" class="transition hover:text-gold-600">Today</a>
+        <a href="#rhythms" class="transition hover:text-gold-600">Rhythms</a>
+        <a href="#prayers" class="transition hover:text-gold-600">Prayers</a>
+        <a href="#wall" class="transition hover:text-gold-600">Prayer Wall</a>
+      </div>
+
+      <a href="#wall" class="hidden rounded-full border border-ink/15 px-5 py-2 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-ivory md:inline-flex">Share a request</a>
+
+      <button type="button" data-menu-button aria-expanded="false" aria-controls="mobile-menu" class="-mr-2 rounded-full p-2 text-ink/80 transition hover:bg-ink/5 md:hidden">
+        <span class="sr-only">Open menu</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6" aria-hidden="true"><path stroke-linecap="round" d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </nav>
+
+    <div id="mobile-menu" hidden class="border-t border-ink/5 bg-ivory/95 px-6 pb-6 backdrop-blur-md md:hidden">
+      <div class="flex flex-col divide-y divide-ink/5 text-sm font-medium uppercase tracking-[0.18em] text-ink/70">
+        <a href="#today" class="py-4">Today</a>
+        <a href="#rhythms" class="py-4">Rhythms</a>
+        <a href="#prayers" class="py-4">Prayers</a>
+        <a href="#wall" class="py-4">Prayer Wall</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ───────────── Hero ───────────── -->
+    <section class="relative isolate flex min-h-[92vh] items-center overflow-hidden pt-32 pb-28">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_55%_at_50%_0%,rgba(201,169,110,0.24),transparent_70%)]"></div>
+
+      <!-- still-water ripples -->
+      <svg aria-hidden="true" viewBox="0 0 1200 360" class="pointer-events-none absolute bottom-0 left-1/2 -z-10 w-[1400px] max-w-none -translate-x-1/2 text-gold-400">
+        <g fill="none" stroke="currentColor" stroke-width="1" class="origin-[600px_300px] animate-ripple">
+          <ellipse cx="600" cy="300" rx="90"  ry="16"  stroke-opacity=".6"/>
+          <ellipse cx="600" cy="300" rx="180" ry="32"  stroke-opacity=".45"/>
+          <ellipse cx="600" cy="300" rx="290" ry="52"  stroke-opacity=".35"/>
+          <ellipse cx="600" cy="300" rx="420" ry="76"  stroke-opacity=".25"/>
+          <ellipse cx="600" cy="300" rx="570" ry="104" stroke-opacity=".16"/>
+          <ellipse cx="600" cy="300" rx="740" ry="136" stroke-opacity=".1"/>
+        </g>
+      </svg>
+
+      <div class="mx-auto max-w-3xl px-6 text-center">
+        <p class="text-xs font-medium uppercase tracking-[0.35em] text-gold-600">A quiet place to pray</p>
+        <h1 class="mt-7 font-serif text-6xl leading-[1.02] font-light sm:text-7xl md:text-8xl">
+          Be still,<br class="sm:hidden"> <span class="italic text-gold-600">and know.</span>
+        </h1>
+        <p class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-ink/65">
+          Step away from the noise for a moment. Here you'll find a prayer for today, words for every hour, and a community holding one another in prayer.
+        </p>
+        <div class="mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a href="#today" class="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-ivory shadow-[0_12px_30px_-12px_rgba(28,34,48,0.6)] transition hover:bg-ink-light">
+            Begin in prayer
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" class="size-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 4v12m0 0 4.5-4.5M10 16l-4.5-4.5"/></svg>
+          </a>
+          <a href="#wall" class="inline-flex items-center rounded-full border border-ink/15 bg-white/40 px-8 py-3.5 text-sm font-medium backdrop-blur transition hover:border-gold-500 hover:text-gold-600">
+            Share a prayer request
+          </a>
+        </div>
+
+        <div class="mt-20 flex items-center justify-center gap-4 text-gold-500" aria-hidden="true">
+          <span class="h-px w-16 bg-linear-to-r from-transparent to-gold-400"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" class="size-4"><path d="M12 3v18M7 8.5h10"/></svg>
+          <span class="h-px w-16 bg-linear-to-l from-transparent to-gold-400"></span>
+        </div>
+        <p class="mt-4 font-serif text-lg text-ink/55 italic">&ldquo;Be still, and know that I am God.&rdquo; &mdash; Psalm 46:10</p>
+      </div>
+    </section>
+
+    <!-- ───────────── Prayer for today ───────────── -->
+    <section id="today" class="scroll-mt-20 px-6 py-24 sm:py-32">
+      <div class="mx-auto max-w-3xl text-center" data-reveal>
+        <p class="text-xs font-medium uppercase tracking-[0.35em] text-gold-600">Prayer for today</p>
+        <p id="today-date" class="mt-3 font-serif text-2xl text-ink/75">Today</p>
+      </div>
+
+      <figure class="relative mx-auto mt-14 max-w-3xl rounded-[2rem] bg-white/75 px-7 pt-16 pb-12 text-center shadow-[0_40px_90px_-50px_rgba(28,34,48,0.45)] ring-1 ring-gold-300/50 sm:px-16 sm:pt-20 sm:pb-14" data-reveal>
+        <span class="absolute top-0 left-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-ivory ring-1 ring-gold-300/70">
+          <svg viewBox="0 0 24 24" class="size-6" aria-hidden="true">
+            <path fill="currentColor" class="text-gold-500" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"/>
+            <rect x="10" y="15" width="4" height="7" rx="1" class="fill-ink"/>
+          </svg>
+        </span>
+
+        <div id="prayer-body" class="transition-opacity duration-500">
+          <blockquote id="prayer-text" class="font-serif text-2xl leading-relaxed text-ink italic sm:text-[2rem] sm:leading-[1.5]">
+            The Lord bless thee, and keep thee: the Lord make his face shine upon thee, and be gracious unto thee: the Lord lift up his countenance upon thee, and give thee peace.
+          </blockquote>
+          <figcaption id="prayer-source" class="mt-8 text-xs font-medium uppercase tracking-[0.28em] text-gold-600">Numbers 6:24–26</figcaption>
+        </div>
+
+        <div class="mt-11 flex flex-wrap items-center justify-center gap-3">
+          <button type="button" id="next-prayer" class="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-ivory">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" class="size-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.5 8A6 6 0 0 0 4.3 7M4.5 12a6 6 0 0 0 11.2 1M4 3.5V7h3.5M16 16.5V13h-3.5"/></svg>
+            Another prayer
+          </button>
+          <button type="button" id="copy-prayer" hidden class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-ink/60 transition hover:text-gold-600">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" class="size-4" aria-hidden="true"><rect x="6.5" y="6.5" width="10" height="10" rx="2"/><path d="M13.5 3.5h-8a2 2 0 0 0-2 2v8"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ───────────── Rhythms of prayer ───────────── -->
+    <section id="rhythms" class="scroll-mt-20 bg-parchment/60 px-6 py-24 sm:py-32">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-2xl text-center" data-reveal>
+          <p class="text-xs font-medium uppercase tracking-[0.35em] text-gold-600">Rhythms of prayer</p>
+          <h2 class="mt-5 font-serif text-4xl font-light sm:text-5xl">Morning, noon <span class="italic">&amp;</span> night</h2>
+          <p class="mt-6 text-lg leading-relaxed text-ink/65">
+            For centuries, the faithful have paused at set hours to turn their hearts toward God. Join the ancient rhythm wherever your day finds you.
+          </p>
+        </div>
+
+        <div class="mt-16 grid gap-6 lg:grid-cols-3">
+          <!-- Morning -->
+          <article data-hour="morning" class="relative flex flex-col rounded-3xl bg-linear-to-b from-[#fbefdc] to-white p-8 ring-1 ring-gold-300/50 data-now:ring-2 data-now:ring-gold-400 sm:p-10" data-reveal>
+            <span data-now-badge hidden class="absolute top-7 right-7 rounded-full bg-gold-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">Now</span>
+            <span class="flex size-12 items-center justify-center rounded-full bg-white text-gold-500 ring-1 ring-gold-300/60">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" class="size-6" aria-hidden="true"><path d="M12 4v3M5.3 8.3l2 2M18.7 8.3l-2 2M2.5 16h2.5M19 16h2.5M7 16a5 5 0 0 1 10 0M3 20h18"/></svg>
+            </span>
+            <p class="mt-8 text-xs font-medium uppercase tracking-[0.28em] text-gold-600">Morning</p>
+            <h3 class="mt-2 font-serif text-3xl">At first light</h3>
+            <p class="mt-5 flex-1 font-serif text-xl leading-relaxed text-ink/75 italic">
+              O Lord, our heavenly Father, who hast safely brought us to the beginning of this day: defend us in the same with thy mighty power; and grant that all our doings may be ordered by thy governance.
+            </p>
+            <p class="mt-8 border-t border-ink/10 pt-5 text-[11px] uppercase tracking-[0.22em] text-ink/45">Collect for Grace</p>
+          </article>
+
+          <!-- Midday -->
+          <article data-hour="midday" class="relative flex flex-col rounded-3xl bg-white p-8 ring-1 ring-gold-300/50 data-now:ring-2 data-now:ring-gold-400 sm:p-10" data-reveal>
+            <span data-now-badge hidden class="absolute top-7 right-7 rounded-full bg-gold-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">Now</span>
+            <span class="flex size-12 items-center justify-center rounded-full bg-ivory text-gold-500 ring-1 ring-gold-300/60">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" class="size-6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+            </span>
+            <p class="mt-8 text-xs font-medium uppercase tracking-[0.28em] text-gold-600">Midday</p>
+            <h3 class="mt-2 font-serif text-3xl">In the heat of the day</h3>
+            <p class="mt-5 flex-1 font-serif text-xl leading-relaxed text-ink/75 italic">
+              Lord Jesus Christ, you said to your apostles, &ldquo;Peace I give to you; my own peace I leave with you.&rdquo; Regard not our sins, but our faith, and give to us the peace of your kingdom.
+            </p>
+            <p class="mt-8 border-t border-ink/10 pt-5 text-[11px] uppercase tracking-[0.22em] text-ink/45">A Noonday Prayer</p>
+          </article>
+
+          <!-- Evening -->
+          <article data-hour="evening" class="relative flex flex-col overflow-hidden rounded-3xl bg-linear-to-b from-ink to-ink-light p-8 text-ivory ring-1 ring-ink data-now:ring-2 data-now:ring-gold-400 sm:p-10" data-reveal>
+            <div aria-hidden="true" class="pointer-events-none absolute -top-24 -right-24 size-64 rounded-full bg-gold-400/15 blur-3xl"></div>
+            <span data-now-badge hidden class="absolute top-7 right-7 rounded-full bg-gold-400 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-ink">Now</span>
+            <span class="relative flex size-12 items-center justify-center rounded-full bg-white/5 text-gold-300 ring-1 ring-white/15">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="size-6" aria-hidden="true"><path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"/></svg>
+            </span>
+            <p class="relative mt-8 text-xs font-medium uppercase tracking-[0.28em] text-gold-300">Evening</p>
+            <h3 class="relative mt-2 font-serif text-3xl">As night falls</h3>
+            <p class="relative mt-5 flex-1 font-serif text-xl leading-relaxed text-ivory/80 italic">
+              Keep watch, dear Lord, with those who work, or watch, or weep this night. Tend the sick, give rest to the weary, bless the dying, soothe the suffering, and all for your love&rsquo;s sake.
+            </p>
+            <p class="relative mt-8 border-t border-white/10 pt-5 text-[11px] uppercase tracking-[0.22em] text-ivory/45">From Compline</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── Treasured prayers ───────────── -->
+    <section id="prayers" class="relative isolate scroll-mt-20 overflow-hidden bg-ink px-6 py-24 text-ivory sm:py-32">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(50%_60%_at_15%_20%,rgba(201,169,110,0.16),transparent_70%)]"></div>
+
+      <div class="mx-auto grid max-w-6xl gap-14 lg:grid-cols-5 lg:gap-20">
+        <div class="lg:col-span-2" data-reveal>
+          <p class="text-xs font-medium uppercase tracking-[0.35em] text-gold-400">Treasured prayers</p>
+          <h2 class="mt-5 font-serif text-4xl leading-tight font-light sm:text-5xl">Words that have carried <span class="italic text-gold-300">generations</span></h2>
+          <p class="mt-6 text-lg leading-relaxed text-ivory/60">
+            When your own words run dry, lean on the prayers the faithful have prayed for centuries &mdash; in cathedrals and kitchens, at bedsides and in the quiet of the night.
+          </p>
+          <div class="mt-10 border-l border-gold-400/40 pl-6">
+            <p class="font-serif text-2xl text-ivory/85 italic">&ldquo;Lord, teach us to pray.&rdquo;</p>
+            <p class="mt-2 text-xs uppercase tracking-[0.25em] text-ivory/40">Luke 11:1</p>
+          </div>
+        </div>
+
+        <div class="divide-y divide-white/10 border-y border-white/10 lg:col-span-3" data-reveal>
+          <details name="prayers" class="group" open>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 transition hover:text-gold-300">
+              <span class="font-serif text-2xl sm:text-3xl">The Lord&rsquo;s Prayer</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" class="size-5 shrink-0 text-gold-400 transition-transform duration-300 group-open:rotate-45" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <p class="pb-8 font-serif text-xl leading-relaxed text-ivory/75 italic">
+              Our Father, which art in heaven, hallowed be thy Name.<br>
+              Thy kingdom come. Thy will be done, on earth as it is in heaven.<br>
+              Give us this day our daily bread.<br>
+              And forgive us our trespasses, as we forgive those who trespass against us.<br>
+              And lead us not into temptation, but deliver us from evil.<br>
+              For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.
+            </p>
+          </details>
+
+          <details name="prayers" class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 transition hover:text-gold-300">
+              <span class="font-serif text-2xl sm:text-3xl">Prayer of St. Francis</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" class="size-5 shrink-0 text-gold-400 transition-transform duration-300 group-open:rotate-45" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <p class="pb-8 font-serif text-xl leading-relaxed text-ivory/75 italic">
+              Lord, make me an instrument of your peace:<br>
+              where there is hatred, let me sow love; where there is injury, pardon;<br>
+              where there is doubt, faith; where there is despair, hope;<br>
+              where there is darkness, light; where there is sadness, joy.<br>
+              O divine Master, grant that I may not so much seek to be consoled as to console;
+              to be understood as to understand; to be loved as to love.<br>
+              For it is in giving that we receive, it is in pardoning that we are pardoned,
+              and it is in dying that we are born to eternal life. Amen.
+            </p>
+          </details>
+
+          <details name="prayers" class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 transition hover:text-gold-300">
+              <span class="font-serif text-2xl sm:text-3xl">The Serenity Prayer</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" class="size-5 shrink-0 text-gold-400 transition-transform duration-300 group-open:rotate-45" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <p class="pb-8 font-serif text-xl leading-relaxed text-ivory/75 italic">
+              God, grant me the serenity to accept the things I cannot change,<br>
+              the courage to change the things I can,<br>
+              and the wisdom to know the difference.
+            </p>
+          </details>
+
+          <details name="prayers" class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 transition hover:text-gold-300">
+              <span class="font-serif text-2xl sm:text-3xl">Psalm 23</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" class="size-5 shrink-0 text-gold-400 transition-transform duration-300 group-open:rotate-45" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <p class="pb-8 font-serif text-xl leading-relaxed text-ivory/75 italic">
+              The Lord is my shepherd; I shall not want.<br>
+              He maketh me to lie down in green pastures: he leadeth me beside the still waters.<br>
+              He restoreth my soul: he leadeth me in the paths of righteousness for his name&rsquo;s sake.<br>
+              Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me.<br>
+              Thou preparest a table before me in the presence of mine enemies: thou anointest my head with oil; my cup runneth over.<br>
+              Surely goodness and mercy shall follow me all the days of my life: and I will dwell in the house of the Lord for ever.
+            </p>
+          </details>
+
+          <details name="prayers" class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 transition hover:text-gold-300">
+              <span class="font-serif text-2xl sm:text-3xl">The Jesus Prayer</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" class="size-5 shrink-0 text-gold-400 transition-transform duration-300 group-open:rotate-45" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <div class="pb-8">
+              <p class="font-serif text-xl leading-relaxed text-ivory/75 italic">Lord Jesus Christ, Son of God, have mercy on me, a sinner.</p>
+              <p class="mt-4 text-sm leading-relaxed text-ivory/45">A breath prayer: pray the first half as you breathe in, the second as you breathe out.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── Prayer wall ───────────── -->
+    <section id="wall" class="scroll-mt-20 px-6 py-24 sm:py-32">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-2xl text-center" data-reveal>
+          <p class="text-xs font-medium uppercase tracking-[0.35em] text-gold-600">Prayer wall</p>
+          <h2 class="mt-5 font-serif text-4xl font-light sm:text-5xl">Bear one another&rsquo;s <span class="italic">burdens</span></h2>
+          <p class="mt-6 text-lg leading-relaxed text-ink/65">
+            Share what is on your heart, and take a moment to pray for someone else. Every flame lit is a prayer offered.
+          </p>
+        </div>
+
+        <div class="mt-16 grid items-start gap-10 lg:grid-cols-5">
+          <!-- Request form -->
+          <form id="request-form" novalidate class="rounded-3xl bg-white/80 p-7 shadow-[0_30px_70px_-45px_rgba(28,34,48,0.4)] ring-1 ring-gold-300/50 sm:p-9 lg:sticky lg:top-28 lg:col-span-2" data-reveal>
+            <h3 class="font-serif text-3xl">Share a request</h3>
+            <p class="mt-2 text-sm text-ink/55">Your request will appear on the prayer wall.</p>
+
+            <label for="req-name" class="mt-8 block text-xs font-medium uppercase tracking-[0.2em] text-ink/60">Your name <span class="normal-case tracking-normal text-ink/40">(optional)</span></label>
+            <input id="req-name" name="name" type="text" maxlength="40" autocomplete="given-name" placeholder="First name"
+              class="mt-2 w-full rounded-xl border border-ink/10 bg-ivory/60 px-4 py-3 text-[15px] outline-none transition placeholder:text-ink/35 focus:border-gold-500 focus:bg-white focus:ring-4 focus:ring-gold-300/30 disabled:opacity-50">
+
+            <label for="req-text" class="mt-6 block text-xs font-medium uppercase tracking-[0.2em] text-ink/60">Your prayer request</label>
+            <textarea id="req-text" name="text" rows="5" maxlength="400" required placeholder="What can we pray for?"
+              class="mt-2 w-full resize-none rounded-xl border border-ink/10 bg-ivory/60 px-4 py-3 text-[15px] leading-relaxed outline-none transition placeholder:text-ink/35 focus:border-gold-500 focus:bg-white focus:ring-4 focus:ring-gold-300/30 aria-[invalid=true]:border-rose-400 aria-[invalid=true]:ring-4 aria-[invalid=true]:ring-rose-200/50"></textarea>
+            <div class="mt-2 flex justify-between text-xs text-ink/45">
+              <span id="req-error" hidden class="text-rose-600">Please share a few words.</span>
+              <span id="req-count" class="ml-auto tabular-nums">0 / 400</span>
+            </div>
+
+            <label class="mt-5 flex cursor-pointer items-center gap-3 text-sm text-ink/70 select-none">
+              <input id="req-anon" type="checkbox" class="size-4 rounded border-ink/20 accent-gold-500">
+              Post anonymously
+            </label>
+
+            <button type="submit" class="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-ivory shadow-[0_12px_30px_-12px_rgba(28,34,48,0.6)] transition hover:bg-ink-light">
+              <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true"><path fill="currentColor" class="text-gold-300" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"/><rect x="10" y="15" width="4" height="7" rx="1" fill="currentColor"/></svg>
+              Add to the prayer wall
+            </button>
+
+            <p id="form-status" role="status" hidden class="mt-5 rounded-xl bg-gold-200/40 px-4 py-3 text-center font-serif text-lg text-ink/80 italic">
+              Thank you. Your request is on the wall &mdash; you are not alone.
+            </p>
+          </form>
+
+          <!-- Wall -->
+          <div class="lg:col-span-3">
+            <div class="flex items-baseline justify-between border-b border-ink/10 pb-4">
+              <p class="font-serif text-2xl">Recent requests</p>
+              <p id="wall-stats" class="text-xs uppercase tracking-[0.2em] text-ink/50"></p>
+            </div>
+            <ul id="wall-list" class="mt-6 grid gap-4 sm:grid-cols-2"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <template id="request-template">
+      <li class="flex flex-col rounded-2xl bg-white/80 p-6 ring-1 ring-ink/[0.07] transition duration-500 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-30px_rgba(28,34,48,0.35)] data-fresh:ring-2 data-fresh:ring-gold-400">
+        <p data-text class="flex-1 font-serif text-xl leading-snug break-words text-ink/90"></p>
+        <div class="mt-6 flex items-center justify-between gap-3 border-t border-ink/[0.07] pt-4">
+          <div class="min-w-0 text-xs">
+            <p data-name class="truncate font-semibold text-ink/75"></p>
+            <p data-time class="mt-0.5 text-ink/45"></p>
+          </div>
+          <button type="button" data-pray aria-pressed="false" class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-gold-300 px-3.5 py-1.5 text-xs font-medium text-gold-600 transition hover:border-gold-500 hover:bg-gold-500/10 aria-pressed:border-gold-500 aria-pressed:bg-gold-500 aria-pressed:text-white">
+            <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true"><path fill="currentColor" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"/><rect x="10" y="15" width="4" height="7" rx="1" fill="currentColor" opacity=".6"/></svg>
+            <span data-label>Pray</span>
+            <span data-count class="tabular-nums opacity-80"></span>
+          </button>
+        </div>
+      </li>
+    </template>
+
+    <!-- ───────────── Closing ───────────── -->
+    <section class="px-6 pb-24">
+      <div class="relative isolate mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-parchment px-8 py-20 text-center ring-1 ring-gold-300/50 sm:py-24" data-reveal>
+        <svg aria-hidden="true" viewBox="0 0 1200 360" class="pointer-events-none absolute -bottom-24 left-1/2 -z-10 w-[1200px] max-w-none -translate-x-1/2 text-gold-400">
+          <g fill="none" stroke="currentColor">
+            <ellipse cx="600" cy="300" rx="140" ry="26"  stroke-opacity=".45"/>
+            <ellipse cx="600" cy="300" rx="280" ry="52"  stroke-opacity=".3"/>
+            <ellipse cx="600" cy="300" rx="440" ry="82"  stroke-opacity=".2"/>
+            <ellipse cx="600" cy="300" rx="620" ry="116" stroke-opacity=".12"/>
+          </g>
+        </svg>
+        <p class="font-serif text-3xl leading-tight font-light text-balance sm:text-5xl">
+          Whatever you carry today,<br>
+          <span class="italic text-gold-600">you don&rsquo;t carry it alone.</span>
+        </p>
+        <a href="#wall" class="mt-10 inline-flex items-center rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-ivory transition hover:bg-ink-light">Ask for prayer</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ───────────── Footer ───────────── -->
+  <footer class="border-t border-ink/10 px-6 py-12">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+      <a href="#top" class="flex items-center gap-2.5">
+        <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true">
+          <path fill="currentColor" class="text-gold-500" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"/>
+          <rect x="10" y="15" width="4" height="7" rx="1" class="fill-ink"/>
+        </svg>
+        <span class="font-serif text-xl font-medium">Still Waters</span>
+      </a>
+      <p class="font-serif text-lg text-ink/55 italic">&ldquo;He leadeth me beside the still waters. He restoreth my soul.&rdquo;</p>
+      <p class="text-xs uppercase tracking-[0.2em] text-ink/45">&copy; <span id="year">2026</span> Still Waters</p>
+    </div>
+  </footer>
+
+  <script>
+  (() => {
+    const $ = (sel, el = document) => el.querySelector(sel);
+    const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
+    const store = {
+      get(key, fallback) {
+        try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+        catch { return fallback; }
+      },
+      set(key, value) {
+        try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+      },
+    };
+    const now = new Date();
+
+    $('#year').textContent = now.getFullYear();
+
+    /* ── Header & mobile menu ─────────────────────────── */
+    const header = $('[data-header]');
+    const onScroll = () => header.toggleAttribute('data-scrolled', window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const menuBtn = $('[data-menu-button]');
+    const menu = $('#mobile-menu');
+    const setMenu = (open) => { menu.hidden = !open; menuBtn.setAttribute('aria-expanded', String(open)); };
+    menuBtn.addEventListener('click', () => setMenu(menu.hidden));
+    $$('a', menu).forEach((a) => a.addEventListener('click', () => setMenu(false)));
+
+    /* ── Prayer for today ─────────────────────────────── */
+    const prayers = [
+      { text: 'The Lord bless thee, and keep thee: the Lord make his face shine upon thee, and be gracious unto thee: the Lord lift up his countenance upon thee, and give thee peace.', source: 'Numbers 6:24–26' },
+      { text: 'You have made us for yourself, O Lord, and our heart is restless until it rests in you.', source: 'St. Augustine of Hippo' },
+      { text: 'Christ with me, Christ before me, Christ behind me, Christ in me, Christ beneath me, Christ above me, Christ on my right, Christ on my left.', source: 'St. Patrick’s Breastplate' },
+      { text: 'I will lift up mine eyes unto the hills, from whence cometh my help. My help cometh from the Lord, which made heaven and earth.', source: 'Psalm 121:1–2' },
+      { text: 'All shall be well, and all shall be well, and all manner of thing shall be well.', source: 'Julian of Norwich' },
+      { text: 'Create in me a clean heart, O God; and renew a right spirit within me.', source: 'Psalm 51:10' },
+      { text: 'Let nothing disturb you, let nothing frighten you. All things are passing; God never changes. Patience obtains all things. Whoever has God lacks nothing; God alone suffices.', source: 'St. Teresa of Ávila' },
+      { text: 'O God, who art the author of peace and lover of concord, in knowledge of whom standeth our eternal life, whose service is perfect freedom: defend us in all assaults, that we, surely trusting in thy defence, may not fear any adversaries.', source: 'Collect for Peace' },
+      { text: 'Teach us, good Lord, to serve thee as thou deservest; to give and not to count the cost; to fight and not to heed the wounds; to toil and not to seek for rest; to labour and not to ask for any reward, save that of knowing that we do thy will.', source: 'St. Ignatius of Loyola' },
+    ];
+
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 864e5);
+    let current = dayOfYear % prayers.length;
+    const prayerBody = $('#prayer-body');
+    const prayerText = $('#prayer-text');
+    const prayerSource = $('#prayer-source');
+
+    $('#today-date').textContent = now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+
+    const showPrayer = (i, animate) => {
+      const apply = () => {
+        prayerText.textContent = prayers[i].text;
+        prayerSource.textContent = prayers[i].source;
+        prayerBody.style.opacity = 1;
+      };
+      if (!animate) return apply();
+      prayerBody.style.opacity = 0;
+      setTimeout(apply, 400);
+    };
+    showPrayer(current, false);
+
+    $('#next-prayer').addEventListener('click', () => {
+      current = (current + 1) % prayers.length;
+      showPrayer(current, true);
+    });
+
+    const copyBtn = $('#copy-prayer');
+    if (navigator.clipboard && window.isSecureContext) {
+      copyBtn.hidden = false;
+      copyBtn.addEventListener('click', async () => {
+        const label = $('span', copyBtn);
+        try {
+          await navigator.clipboard.writeText(`${prayers[current].text}\n— ${prayers[current].source}`);
+          label.textContent = 'Copied';
+        } catch {
+          label.textContent = 'Couldn’t copy';
+        }
+        setTimeout(() => (label.textContent = 'Copy'), 1800);
+      });
+    }
+
+    /* ── Highlight the current hour of prayer ─────────── */
+    const h = now.getHours();
+    const hour = h >= 4 && h < 11 ? 'morning' : h >= 11 && h < 17 ? 'midday' : 'evening';
+    const activeCard = $(`[data-hour="${hour}"]`);
+    activeCard.setAttribute('data-now', '');
+    $('[data-now-badge]', activeCard).hidden = false;
+
+    /* ── Prayer wall ──────────────────────────────────── */
+    const HOUR = 36e5;
+    const seed = [
+      { id: 'seed-1', name: 'Maria',     text: 'For my father, who begins treatment this week. Strength for him, and peace for our whole family.', count: 24, createdAt: Date.now() - 2 * HOUR },
+      { id: 'seed-2', name: 'Anonymous', text: 'I lost my job last month and feel unsure of what comes next. Praying for direction and the grace to trust.', count: 17, createdAt: Date.now() - 7 * HOUR },
+      { id: 'seed-3', name: 'James',     text: 'Gratitude! Our daughter was born healthy this morning. Thank you, Lord, for this gift.', count: 41, createdAt: Date.now() - 20 * HOUR },
+      { id: 'seed-4', name: 'Ruth',      text: 'For my friend Anna, walking through grief after losing her mother. May she feel held.', count: 12, createdAt: Date.now() - 52 * HOUR },
+    ];
+
+    let requests = store.get('sw:requests', null) || seed;
+    const prayed = new Set(store.get('sw:prayed', []));
+    const save = () => { store.set('sw:requests', requests); store.set('sw:prayed', [...prayed]); };
+
+    const list = $('#wall-list');
+    const tpl = $('#request-template');
+    const stats = $('#wall-stats');
+
+    const timeAgo = (ts) => {
+      const s = (Date.now() - ts) / 1000;
+      if (s < 60) return 'Just now';
+      const units = [['minute', 60], ['hour', 3600], ['day', 86400], ['week', 604800]];
+      let [name, size] = units[0];
+      for (const u of units) if (s >= u[1]) [name, size] = u;
+      const n = Math.floor(s / size);
+      return `${n} ${name}${n === 1 ? '' : 's'} ago`;
+    };
+
+    const renderButton = (btn, r) => {
+      const on = prayed.has(r.id);
+      btn.setAttribute('aria-pressed', String(on));
+      $('[data-label]', btn).textContent = on ? 'Prayed' : 'Pray';
+      $('[data-count]', btn).textContent = r.count ? `· ${r.count}` : '';
+      btn.setAttribute('aria-label', `${on ? 'Prayed' : 'Pray'} for this request (${r.count} prayers)`);
+    };
+
+    const renderStats = () => {
+      const total = requests.reduce((sum, r) => sum + r.count, 0);
+      stats.textContent = `${total} prayers offered`;
+    };
+
+    const render = (freshId) => {
+      list.replaceChildren(...requests.map((r) => {
+        const li = tpl.content.firstElementChild.cloneNode(true);
+        li.dataset.id = r.id;
+        $('[data-text]', li).textContent = r.text;
+        $('[data-name]', li).textContent = r.name;
+        $('[data-time]', li).textContent = timeAgo(r.createdAt);
+        renderButton($('[data-pray]', li), r);
+        if (r.id === freshId) {
+          li.setAttribute('data-fresh', '');
+          setTimeout(() => li.removeAttribute('data-fresh'), 2500);
+        }
+        return li;
+      }));
+      renderStats();
+    };
+    render();
+
+    list.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-pray]');
+      if (!btn) return;
+      const r = requests.find((x) => x.id === btn.closest('li').dataset.id);
+      if (prayed.has(r.id)) { prayed.delete(r.id); r.count = Math.max(0, r.count - 1); }
+      else { prayed.add(r.id); r.count += 1; }
+      renderButton(btn, r);
+      renderStats();
+      save();
+    });
+
+    /* ── Request form ─────────────────────────────────── */
+    const form = $('#request-form');
+    const nameInput = $('#req-name');
+    const textInput = $('#req-text');
+    const anon = $('#req-anon');
+    const counter = $('#req-count');
+    const error = $('#req-error');
+    const status = $('#form-status');
+
+    const updateCount = () => (counter.textContent = `${textInput.value.length} / ${textInput.maxLength}`);
+    textInput.addEventListener('input', () => {
+      updateCount();
+      if (textInput.value.trim()) { error.hidden = true; textInput.removeAttribute('aria-invalid'); }
+    });
+    anon.addEventListener('change', () => (nameInput.disabled = anon.checked));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = textInput.value.trim();
+      if (!text) {
+        error.hidden = false;
+        textInput.setAttribute('aria-invalid', 'true');
+        textInput.focus();
+        return;
+      }
+      const name = anon.checked ? 'Anonymous' : (nameInput.value.trim() || 'Anonymous');
+      const id = (crypto.randomUUID && crypto.randomUUID()) || `r-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+      requests = [{ id, name, text, count: 0, createdAt: Date.now() }, ...requests];
+      save();
+      render(id);
+
+      form.reset();
+      nameInput.disabled = false;
+      updateCount();
+      status.hidden = false;
+      setTimeout(() => (status.hidden = true), 6000);
+      list.firstElementChild?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    /* ── Gentle reveal on scroll ──────────────────────── */
+    const revealEls = $$('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('is-visible'));
+    }
+  })();
+  </script>
+</body>
+</html>
