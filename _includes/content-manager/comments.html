@@ -1,0 +1,83 @@
+{%- comment -%}
+  Comments, from Content Manager. It writes this file, and turns comments on and
+  off for each section in _data/content_manager.yml.
+{%- endcomment -%}
+{%- assign cm_comments_to = site.data.content_manager.comments[page.collection] %}
+{%- if cm_comments_to %}
+{%- assign cm_comments = site.data.comments[page.collection] | where: "entry", page.path | compact | sort: "date" %}
+<section class="cm-comments" id="comments">
+  <style>
+    .cm-comments{margin-top:3.5rem}
+    .cm-comments-heading{margin:0 0 1.25rem;font-size:1.375rem;line-height:1.3;font-weight:600}
+    .cm-comment{padding:1.25rem 0;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)}
+    .cm-comment-meta{margin:0;font-size:.875rem}
+    .cm-comment-meta time{opacity:.65}
+    .cm-comment-text{margin:.5rem 0 0;line-height:1.65}
+    .cm-comments .cm-form{margin-top:1.5rem;padding-top:2rem;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)}
+    .cm-form{display:grid;gap:1.125rem}
+    .cm-form-field{display:grid;gap:.375rem}
+    .cm-form-field>label{font-size:.875rem;font-weight:600}
+    .cm-form-note{font-weight:400;opacity:.65}
+    .cm-form input:not([type=checkbox]),.cm-form textarea{box-sizing:border-box;width:100%;padding:.625rem .75rem;border:1px solid color-mix(in srgb,currentColor 25%,transparent);border-radius:.5rem;background:transparent;color:inherit;font:inherit}
+    .cm-form input:focus,.cm-form textarea:focus{outline:2px solid color-mix(in srgb,currentColor 55%,transparent);outline-offset:1px}
+    .cm-form textarea{resize:vertical}
+    .cm-form-check{display:flex;gap:.5rem;align-items:center}
+    .cm-form-button{justify-self:start;padding:.625rem 1.25rem;border:1px solid currentColor;border-radius:999px;background:transparent;color:inherit;font:inherit;font-weight:600;cursor:pointer}
+    .cm-form-button:disabled{opacity:.5;cursor:default}
+    .cm-form-status{margin:0}
+    .cm-form-status[data-state=error]{color:#b42318}
+  </style>
+  <h2 class="cm-comments-heading">{% if cm_comments.size == 1 %}1 comment{% elsif cm_comments.size > 1 %}{{ cm_comments.size }} comments{% else %}Comments{% endif %}</h2>
+  {%- for cm_comment in cm_comments %}
+  <article class="cm-comment" id="comment-{{ cm_comment.id }}">
+    <p class="cm-comment-meta"><strong>{{ cm_comment.name | escape }}</strong> &middot; <time datetime="{{ cm_comment.date }}">{{ cm_comment.date | date: "%B %-d, %Y" }}</time></p>
+    <p class="cm-comment-text">{{ cm_comment.message | escape | newline_to_br }}</p>
+  </article>
+  {%- endfor %}
+  <form class="cm-form" method="post" action="{{ cm_comments_to }}" data-cm-form>
+    <input type="hidden" name="entry" value="{{ page.path }}">
+    <input type="hidden" name="return_to" value="{{ page.url | absolute_url }}">
+    <div class="cm-form-field">
+      <label for="cm-comment-name">Name</label>
+      <input id="cm-comment-name" name="name" type="text" maxlength="200" autocomplete="name" required>
+    </div>
+    <div class="cm-form-field">
+      <label for="cm-comment-email">Email <span class="cm-form-note">(optional, never shown)</span></label>
+      <input id="cm-comment-email" name="email" type="email" maxlength="254" autocomplete="email">
+    </div>
+    <div class="cm-form-field">
+      <label for="cm-comment-message">Comment</label>
+      <textarea id="cm-comment-message" name="message" rows="5" maxlength="5000" required></textarea>
+    </div>
+    <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label>Leave this empty <input name="cm_trap" tabindex="-1" autocomplete="off"></label></div>
+    <button class="cm-form-button" type="submit">Post comment</button>
+    <p class="cm-form-status" role="status" hidden></p>
+  </form>
+</section>
+<script>
+(function () {
+  if (window.cmForms) return;
+  window.cmForms = true;
+  document.addEventListener("submit", function (event) {
+    var form = event.target;
+    if (!form.matches || !form.matches("form[data-cm-form]") || !window.fetch) return;
+    event.preventDefault();
+    var button = form.querySelector("[type=submit]");
+    var status = form.querySelector(".cm-form-status");
+    if (button) button.disabled = true;
+    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      .then(function (response) {
+        return response.json().then(function (result) {
+          if (response.ok) form.reset();
+          if (!status) return;
+          status.textContent = result.message;
+          status.dataset.state = response.ok ? "sent" : "error";
+          status.hidden = false;
+        });
+      })
+      .catch(function () { form.submit(); })
+      .finally(function () { if (button) button.disabled = false; });
+  });
+})();
+</script>
+{%- endif %}

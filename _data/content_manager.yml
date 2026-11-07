@@ -1,0 +1,5 @@
+# Written by Content Manager. It says which sections take comments and where to
+# send them. Turn comments on and off in Content Manager rather than here.
+comments:
+  verse_of_the_day: http://localhost:3000/f/ZrazaArQp7QeaeJzpEc1XoMN
+
