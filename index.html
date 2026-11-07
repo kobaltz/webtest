@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -55,7 +57,7 @@
   <!-- ───────────── Header ───────────── -->
   <header data-header class="group/header fixed inset-x-0 top-0 z-50 transition-all duration-500 data-scrolled:bg-ivory/85 data-scrolled:shadow-[0_1px_0_rgba(28,34,48,0.06)] data-scrolled:backdrop-blur-md">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 transition-all duration-500 group-data-scrolled/header:py-4">
-      <a href="#top" class="flex items-center gap-2.5">
+      <a href="/" class="flex items-center gap-2.5">
         <svg viewBox="0 0 24 24" class="size-6" aria-hidden="true">
           <path fill="currentColor" class="text-gold-500" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"/>
           <rect x="10" y="15" width="4" height="7" rx="1" class="fill-ink"/>
@@ -63,27 +65,29 @@
         <span class="font-serif text-2xl font-medium tracking-wide">Still Waters</span>
       </a>
 
-      <div class="hidden items-center gap-10 text-[12px] font-medium uppercase tracking-[0.2em] text-ink/65 md:flex">
-        <a href="#today" class="transition hover:text-gold-600">Today</a>
-        <a href="#rhythms" class="transition hover:text-gold-600">Rhythms</a>
-        <a href="#prayers" class="transition hover:text-gold-600">Prayers</a>
-        <a href="#wall" class="transition hover:text-gold-600">Prayer Wall</a>
+      <div class="hidden items-center gap-8 text-[12px] font-medium uppercase tracking-[0.2em] text-ink/65 lg:flex">
+        <a href="/#today" class="transition hover:text-gold-600">Today</a>
+        <a href="/#rhythms" class="transition hover:text-gold-600">Rhythms</a>
+        <a href="/#prayers" class="transition hover:text-gold-600">Prayers</a>
+        <a href="/#wall" class="transition hover:text-gold-600">Prayer Wall</a>
+        <a href="/verse-of-the-day/" class="transition hover:text-gold-600">Verse of the Day</a>
       </div>
 
-      <a href="#wall" class="hidden rounded-full border border-ink/15 px-5 py-2 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-ivory md:inline-flex">Share a request</a>
+      <a href="/#wall" class="hidden rounded-full border border-ink/15 px-5 py-2 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-ivory lg:inline-flex">Share a request</a>
 
-      <button type="button" data-menu-button aria-expanded="false" aria-controls="mobile-menu" class="-mr-2 rounded-full p-2 text-ink/80 transition hover:bg-ink/5 md:hidden">
+      <button type="button" data-menu-button aria-expanded="false" aria-controls="mobile-menu" class="-mr-2 rounded-full p-2 text-ink/80 transition hover:bg-ink/5 lg:hidden">
         <span class="sr-only">Open menu</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6" aria-hidden="true"><path stroke-linecap="round" d="M4 8h16M4 16h16"/></svg>
       </button>
     </nav>
 
-    <div id="mobile-menu" hidden class="border-t border-ink/5 bg-ivory/95 px-6 pb-6 backdrop-blur-md md:hidden">
+    <div id="mobile-menu" hidden class="border-t border-ink/5 bg-ivory/95 px-6 pb-6 backdrop-blur-md lg:hidden">
       <div class="flex flex-col divide-y divide-ink/5 text-sm font-medium uppercase tracking-[0.18em] text-ink/70">
-        <a href="#today" class="py-4">Today</a>
-        <a href="#rhythms" class="py-4">Rhythms</a>
-        <a href="#prayers" class="py-4">Prayers</a>
-        <a href="#wall" class="py-4">Prayer Wall</a>
+        <a href="/#today" class="py-4">Today</a>
+        <a href="/#rhythms" class="py-4">Rhythms</a>
+        <a href="/#prayers" class="py-4">Prayers</a>
+        <a href="/#wall" class="py-4">Prayer Wall</a>
+        <a href="/verse-of-the-day/" class="py-4">Verse of the Day</a>
       </div>
     </div>
   </header>
@@ -115,11 +119,11 @@
           Step away from the noise for a moment. Here you'll find a prayer for today, words for every hour, and a community holding one another in prayer.
         </p>
         <div class="mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a href="#today" class="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-ivory shadow-[0_12px_30px_-12px_rgba(28,34,48,0.6)] transition hover:bg-ink-light">
+          <a href="/#today" class="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-ivory shadow-[0_12px_30px_-12px_rgba(28,34,48,0.6)] transition hover:bg-ink-light">
             Begin in prayer
             <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" class="size-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 4v12m0 0 4.5-4.5M10 16l-4.5-4.5"/></svg>
           </a>
-          <a href="#wall" class="inline-flex items-center rounded-full border border-ink/15 bg-white/40 px-8 py-3.5 text-sm font-medium backdrop-blur transition hover:border-gold-500 hover:text-gold-600">
+          <a href="/#wall" class="inline-flex items-center rounded-full border border-ink/15 bg-white/40 px-8 py-3.5 text-sm font-medium backdrop-blur transition hover:border-gold-500 hover:text-gold-600">
             Share a prayer request
           </a>
         </div>
@@ -133,39 +137,39 @@
       </div>
     </section>
 
-    <!-- ───────────── Prayer for today ───────────── -->
-    <section id="today" class="scroll-mt-20 px-6 py-24 sm:py-32">
-      <div class="mx-auto max-w-3xl text-center" data-reveal>
-        <p class="text-xs font-medium uppercase tracking-[0.35em] text-gold-600">Prayer for today</p>
-        <p id="today-date" class="mt-3 font-serif text-2xl text-ink/75">Today</p>
-      </div>
-
-      <figure class="relative mx-auto mt-14 max-w-3xl rounded-[2rem] bg-white/75 px-7 pt-16 pb-12 text-center shadow-[0_40px_90px_-50px_rgba(28,34,48,0.45)] ring-1 ring-gold-300/50 sm:px-16 sm:pt-20 sm:pb-14" data-reveal>
-        <span class="absolute top-0 left-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-ivory ring-1 ring-gold-300/70">
-          <svg viewBox="0 0 24 24" class="size-6" aria-hidden="true">
-            <path fill="currentColor" class="text-gold-500" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"/>
-            <rect x="10" y="15" width="4" height="7" rx="1" class="fill-ink"/>
-          </svg>
-        </span>
-
-        <div id="prayer-body" class="transition-opacity duration-500">
-          <blockquote id="prayer-text" class="font-serif text-2xl leading-relaxed text-ink italic sm:text-[2rem] sm:leading-[1.5]">
-            The Lord bless thee, and keep thee: the Lord make his face shine upon thee, and be gracious unto thee: the Lord lift up his countenance upon thee, and give thee peace.
-          </blockquote>
-          <figcaption id="prayer-source" class="mt-8 text-xs font-medium uppercase tracking-[0.28em] text-gold-600">Numbers 6:24–26</figcaption>
-        </div>
-
-        <div class="mt-11 flex flex-wrap items-center justify-center gap-3">
-          <button type="button" id="next-prayer" class="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-ivory">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" class="size-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.5 8A6 6 0 0 0 4.3 7M4.5 12a6 6 0 0 0 11.2 1M4 3.5V7h3.5M16 16.5V13h-3.5"/></svg>
-            Another prayer
-          </button>
-          <button type="button" id="copy-prayer" hidden class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-ink/60 transition hover:text-gold-600">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" class="size-4" aria-hidden="true"><rect x="6.5" y="6.5" width="10" height="10" rx="2"/><path d="M13.5 3.5h-8a2 2 0 0 0-2 2v8"/></svg>
-            <span>Copy</span>
-          </button>
-        </div>
-      </figure>
+    <!-- ───────────── Verse of the Day (Content Manager) ───────────── -->
+    <section id="today" class="scroll-mt-20">
+<style>
+  .cm-embed{max-width:44rem;margin:0 auto;padding:3rem 1.25rem}
+  .cm-embed-heading{margin:0 0 1.25rem;font-size:1.75rem;line-height:1.2;font-weight:600}
+  .cm-embed-date{display:block;font-size:.8125rem;letter-spacing:.04em;opacity:.65}
+  .cm-embed-all{margin:1.25rem 0 0;font-size:.875rem}
+  .cm-embed-all a{color:inherit;font-weight:600}
+  .cm-embed-date+.cm-embed-heading{margin-top:.375rem}
+  .cm-embed-hero{display:block;width:100%;height:auto;margin:0 0 2rem;border-radius:.75rem}
+  .cm-embed-lines{margin:0 0 1.5rem;font-size:1.25rem;line-height:1.6}
+  .cm-embed-body{font-size:1.0625rem;line-height:1.75}
+  .cm-embed-body>*+*{margin-top:1.1em}
+  .cm-embed-body a{text-decoration:underline}
+  .cm-embed-body ul{padding-left:1.5em;list-style:disc}
+  .cm-embed-body ol{padding-left:1.5em;list-style:decimal}
+  .cm-embed-body img{max-width:100%;height:auto;border-radius:.5rem}
+  .cm-embed-body blockquote{margin-left:0;padding-left:1.25em;border-left:3px solid currentColor;opacity:.85}
+</style>
+{%- assign cm_item = site.verse_of_the_day | compact | sort: "date" | last %}
+{%- if cm_item %}
+<article class="cm-embed">
+  <time class="cm-embed-date" datetime="{{ cm_item.date | date_to_xmlschema }}">{{ cm_item.date | date: "%B %-d, %Y" }}</time>
+  <h2 class="cm-embed-heading">{{ cm_item.title | escape }}</h2>
+  {%- if cm_item.verse %}
+  <p class="cm-embed-lines">{{ cm_item.verse | strip | escape | newline_to_br }}</p>
+  {%- endif %}
+  <div class="cm-embed-body">
+    {{ cm_item.content }}
+  </div>
+  <p class="cm-embed-all"><a href="{{ '/verse-of-the-day/' | relative_url }}">All Verse of the Day &rarr;</a></p>
+</article>
+{%- endif %}
     </section>
 
     <!-- ───────────── Rhythms of prayer ───────────── -->
@@ -405,7 +409,7 @@
           Whatever you carry today,<br>
           <span class="italic text-gold-600">you don&rsquo;t carry it alone.</span>
         </p>
-        <a href="#wall" class="mt-10 inline-flex items-center rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-ivory transition hover:bg-ink-light">Ask for prayer</a>
+        <a href="/#wall" class="mt-10 inline-flex items-center rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-ivory transition hover:bg-ink-light">Ask for prayer</a>
       </div>
     </section>
   </main>
@@ -413,7 +417,7 @@
   <!-- ───────────── Footer ───────────── -->
   <footer class="border-t border-ink/10 px-6 py-12">
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
-      <a href="#top" class="flex items-center gap-2.5">
+      <a href="/" class="flex items-center gap-2.5">
         <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true">
           <path fill="currentColor" class="text-gold-500" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"/>
           <rect x="10" y="15" width="4" height="7" rx="1" class="fill-ink"/>
@@ -453,59 +457,6 @@
     const setMenu = (open) => { menu.hidden = !open; menuBtn.setAttribute('aria-expanded', String(open)); };
     menuBtn.addEventListener('click', () => setMenu(menu.hidden));
     $$('a', menu).forEach((a) => a.addEventListener('click', () => setMenu(false)));
-
-    /* ── Prayer for today ─────────────────────────────── */
-    const prayers = [
-      { text: 'The Lord bless thee, and keep thee: the Lord make his face shine upon thee, and be gracious unto thee: the Lord lift up his countenance upon thee, and give thee peace.', source: 'Numbers 6:24–26' },
-      { text: 'You have made us for yourself, O Lord, and our heart is restless until it rests in you.', source: 'St. Augustine of Hippo' },
-      { text: 'Christ with me, Christ before me, Christ behind me, Christ in me, Christ beneath me, Christ above me, Christ on my right, Christ on my left.', source: 'St. Patrick’s Breastplate' },
-      { text: 'I will lift up mine eyes unto the hills, from whence cometh my help. My help cometh from the Lord, which made heaven and earth.', source: 'Psalm 121:1–2' },
-      { text: 'All shall be well, and all shall be well, and all manner of thing shall be well.', source: 'Julian of Norwich' },
-      { text: 'Create in me a clean heart, O God; and renew a right spirit within me.', source: 'Psalm 51:10' },
-      { text: 'Let nothing disturb you, let nothing frighten you. All things are passing; God never changes. Patience obtains all things. Whoever has God lacks nothing; God alone suffices.', source: 'St. Teresa of Ávila' },
-      { text: 'O God, who art the author of peace and lover of concord, in knowledge of whom standeth our eternal life, whose service is perfect freedom: defend us in all assaults, that we, surely trusting in thy defence, may not fear any adversaries.', source: 'Collect for Peace' },
-      { text: 'Teach us, good Lord, to serve thee as thou deservest; to give and not to count the cost; to fight and not to heed the wounds; to toil and not to seek for rest; to labour and not to ask for any reward, save that of knowing that we do thy will.', source: 'St. Ignatius of Loyola' },
-    ];
-
-    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 864e5);
-    let current = dayOfYear % prayers.length;
-    const prayerBody = $('#prayer-body');
-    const prayerText = $('#prayer-text');
-    const prayerSource = $('#prayer-source');
-
-    $('#today-date').textContent = now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
-
-    const showPrayer = (i, animate) => {
-      const apply = () => {
-        prayerText.textContent = prayers[i].text;
-        prayerSource.textContent = prayers[i].source;
-        prayerBody.style.opacity = 1;
-      };
-      if (!animate) return apply();
-      prayerBody.style.opacity = 0;
-      setTimeout(apply, 400);
-    };
-    showPrayer(current, false);
-
-    $('#next-prayer').addEventListener('click', () => {
-      current = (current + 1) % prayers.length;
-      showPrayer(current, true);
-    });
-
-    const copyBtn = $('#copy-prayer');
-    if (navigator.clipboard && window.isSecureContext) {
-      copyBtn.hidden = false;
-      copyBtn.addEventListener('click', async () => {
-        const label = $('span', copyBtn);
-        try {
-          await navigator.clipboard.writeText(`${prayers[current].text}\n— ${prayers[current].source}`);
-          label.textContent = 'Copied';
-        } catch {
-          label.textContent = 'Couldn’t copy';
-        }
-        setTimeout(() => (label.textContent = 'Copy'), 1800);
-      });
-    }
 
     /* ── Highlight the current hour of prayer ─────────── */
     const h = now.getHours();

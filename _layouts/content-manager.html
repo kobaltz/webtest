@@ -77,10 +77,10 @@
 .cm-poem-text{margin-top:1.5rem;font-size:1.125rem;line-height:1.75;white-space:pre-line}
   </style>
 </head>
-<body>
+<body class="bg-ivory font-sans text-ink antialiased selection:bg-gold-300/50">
   <header data-header="" class="group/header fixed inset-x-0 top-0 z-50 transition-all duration-500 data-scrolled:bg-ivory/85 data-scrolled:shadow-[0_1px_0_rgba(28,34,48,0.06)] data-scrolled:backdrop-blur-md">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 transition-all duration-500 group-data-scrolled/header:py-4">
-      <a href="#top" class="flex items-center gap-2.5">
+      <a href="/" class="flex items-center gap-2.5">
         <svg viewBox="0 0 24 24" class="size-6" aria-hidden="true">
           <path fill="currentColor" class="text-gold-500" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"></path>
           <rect x="10" y="15" width="4" height="7" rx="1" class="fill-ink"></rect>
@@ -88,34 +88,36 @@
         <span class="font-serif text-2xl font-medium tracking-wide">Still Waters</span>
       </a>
 
-      <div class="hidden items-center gap-10 text-[12px] font-medium uppercase tracking-[0.2em] text-ink/65 md:flex">
-        <a href="#today" class="transition hover:text-gold-600">Today</a>
-        <a href="#rhythms" class="transition hover:text-gold-600">Rhythms</a>
-        <a href="#prayers" class="transition hover:text-gold-600">Prayers</a>
-        <a href="#wall" class="transition hover:text-gold-600">Prayer Wall</a>
+      <div class="hidden items-center gap-8 text-[12px] font-medium uppercase tracking-[0.2em] text-ink/65 lg:flex">
+        <a href="/#today" class="transition hover:text-gold-600">Today</a>
+        <a href="/#rhythms" class="transition hover:text-gold-600">Rhythms</a>
+        <a href="/#prayers" class="transition hover:text-gold-600">Prayers</a>
+        <a href="/#wall" class="transition hover:text-gold-600">Prayer Wall</a>
+        <a href="/verse-of-the-day/" class="transition hover:text-gold-600">Verse of the Day</a>
       </div>
 
-      <a href="#wall" class="hidden rounded-full border border-ink/15 px-5 py-2 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-ivory md:inline-flex">Share a request</a>
+      <a href="/#wall" class="hidden rounded-full border border-ink/15 px-5 py-2 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-ivory lg:inline-flex">Share a request</a>
 
-      <button type="button" data-menu-button="" aria-expanded="false" aria-controls="mobile-menu" class="-mr-2 rounded-full p-2 text-ink/80 transition hover:bg-ink/5 md:hidden">
+      <button type="button" data-menu-button="" aria-expanded="false" aria-controls="mobile-menu" class="-mr-2 rounded-full p-2 text-ink/80 transition hover:bg-ink/5 lg:hidden">
         <span class="sr-only">Open menu</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6" aria-hidden="true"><path stroke-linecap="round" d="M4 8h16M4 16h16"></path></svg>
       </button>
     </nav>
 
-    <div id="mobile-menu" hidden="" class="border-t border-ink/5 bg-ivory/95 px-6 pb-6 backdrop-blur-md md:hidden">
+    <div id="mobile-menu" hidden="" class="border-t border-ink/5 bg-ivory/95 px-6 pb-6 backdrop-blur-md lg:hidden">
       <div class="flex flex-col divide-y divide-ink/5 text-sm font-medium uppercase tracking-[0.18em] text-ink/70">
-        <a href="#today" class="py-4">Today</a>
-        <a href="#rhythms" class="py-4">Rhythms</a>
-        <a href="#prayers" class="py-4">Prayers</a>
-        <a href="#wall" class="py-4">Prayer Wall</a>
+        <a href="/#today" class="py-4">Today</a>
+        <a href="/#rhythms" class="py-4">Rhythms</a>
+        <a href="/#prayers" class="py-4">Prayers</a>
+        <a href="/#wall" class="py-4">Prayer Wall</a>
+        <a href="/verse-of-the-day/" class="py-4">Verse of the Day</a>
       </div>
     </div>
   </header>
-  <main>{{ content }}</main>
+  <main class="pt-20">{{ content }}</main>
   <footer class="border-t border-ink/10 px-6 py-12">
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
-      <a href="#top" class="flex items-center gap-2.5">
+      <a href="/" class="flex items-center gap-2.5">
         <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true">
           <path fill="currentColor" class="text-gold-500" d="M12 2c2.5 3 4 5.2 4 7.5a4 4 0 0 1-8 0C8 7.2 9.5 5 12 2Z"></path>
           <rect x="10" y="15" width="4" height="7" rx="1" class="fill-ink"></rect>
@@ -126,6 +128,21 @@
       <p class="text-xs uppercase tracking-[0.2em] text-ink/45">© <span id="year">2026</span> Still Waters</p>
     </div>
   </footer>
-  
+  <script>
+  (() => {
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const header = document.querySelector('[data-header]');
+    const onScroll = () => header.toggleAttribute('data-scrolled', window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const menuBtn = document.querySelector('[data-menu-button]');
+    const menu = document.getElementById('mobile-menu');
+    const setMenu = (open) => { menu.hidden = !open; menuBtn.setAttribute('aria-expanded', String(open)); };
+    menuBtn.addEventListener('click', () => setMenu(menu.hidden));
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  })();
+  </script>
 </body>
 </html>
