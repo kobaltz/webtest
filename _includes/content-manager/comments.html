@@ -21,7 +21,6 @@
     .cm-form input:not([type=checkbox]),.cm-form textarea{box-sizing:border-box;width:100%;padding:.625rem .75rem;border:1px solid color-mix(in srgb,currentColor 25%,transparent);border-radius:.5rem;background:transparent;color:inherit;font:inherit}
     .cm-form input:focus,.cm-form textarea:focus{outline:2px solid color-mix(in srgb,currentColor 55%,transparent);outline-offset:1px}
     .cm-form textarea{resize:vertical}
-    .cm-form-check{display:flex;gap:.5rem;align-items:center}
     .cm-form-button{justify-self:start;padding:.625rem 1.25rem;border:1px solid currentColor;border-radius:999px;background:transparent;color:inherit;font:inherit;font-weight:600;cursor:pointer}
     .cm-form-button:disabled{opacity:.5;cursor:default}
     .cm-form-status{margin:0}
@@ -51,32 +50,51 @@
     </div>
     <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label>Leave this empty <input name="cm_trap" tabindex="-1" autocomplete="off"></label></div>
     <button class="cm-form-button" type="submit">Post comment</button>
-    <p class="cm-form-status" role="status" hidden></p>
+    <p class="cm-form-status" data-cm-status role="status" hidden></p>
   </form>
 </section>
 <script>
 (function () {
-  if (window.cmForms) return;
+  if (window.cmForms || !window.fetch) return;
   window.cmForms = true;
+  function ticket(form) {
+    if (!form.cmTicket) {
+      form.cmTicket = fetch(form.action + "/ticket", { headers: { Accept: "application/json" } })
+        .then(function (response) { return response.ok ? response.json() : {}; })
+        .then(function (result) { return result.ticket || ""; }, function () { return ""; });
+    }
+    return form.cmTicket;
+  }
+  function start() { Array.prototype.forEach.call(document.querySelectorAll("form[data-cm-form]"), ticket); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
   document.addEventListener("submit", function (event) {
     var form = event.target;
-    if (!form.matches || !form.matches("form[data-cm-form]") || !window.fetch) return;
+    if (event.defaultPrevented || !form.matches || !form.matches("form[data-cm-form]")) return;
     event.preventDefault();
     var button = form.querySelector("[type=submit]");
-    var status = form.querySelector(".cm-form-status");
+    var status = form.querySelector("[data-cm-status]");
     if (button) button.disabled = true;
-    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
-      .then(function (response) {
-        return response.json().then(function (result) {
-          if (response.ok) form.reset();
-          if (!status) return;
-          status.textContent = result.message;
-          status.dataset.state = response.ok ? "sent" : "error";
-          status.hidden = false;
-        });
-      })
-      .catch(function () { form.submit(); })
-      .finally(function () { if (button) button.disabled = false; });
+    ticket(form).then(function (value) {
+      var field = form.querySelector("input[name=cm_ticket]");
+      if (!field) {
+        field = document.createElement("input");
+        field.type = "hidden";
+        field.name = "cm_ticket";
+        form.appendChild(field);
+      }
+      field.value = value;
+      if (!status) return form.submit();
+      return fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function (response) {
+          return response.json().then(function (result) {
+            if (response.ok) form.reset();
+            status.textContent = result.message;
+            status.dataset.state = response.ok ? "sent" : "error";
+            status.hidden = false;
+          });
+        })
+        .catch(function () { form.submit(); });
+    }).finally(function () { if (button) button.disabled = false; });
   });
 })();
 </script>
